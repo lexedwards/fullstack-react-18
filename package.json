@@ -1,0 +1,33 @@
+{
+  "name": "@lexedwards/fullstack",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack",
+    "dev": "webpack-dev-server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Alex Edwards <alex@alexedwards.co> (https://alexedwards.co/)",
+  "license": "ISC",
+  "devDependencies": {
+    "@swc/core": "^1.2.231",
+    "@types/react": "^18.0.17",
+    "@types/react-dom": "^18.0.6",
+    "fastify-plugin": "^4.2.0",
+    "html-webpack-plugin": "^5.5.0",
+    "regenerator-runtime": "^0.13.9",
+    "swc-loader": "^0.2.3",
+    "tsconfig-paths-webpack-plugin": "^4.0.0",
+    "typescript": "^4.7.4",
+    "webpack-cli": "^4.10.0"
+  },
+  "dependencies": {
+    "fastify": "^4.4.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "webpack": "^5.74.0",
+    "webpack-dev-server": "^4.10.0"
+  }
+}
