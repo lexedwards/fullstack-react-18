@@ -39,11 +39,7 @@ module.exports = function (env, argv) {
       rules: [typescriptLoader],
     },
     resolve,
-    plugins: [
-      new HtmlWebpackPlugin({
-        template: './src/app/static/index.html',
-      }),
-    ],
+    target: ['web', 'es2020'],
     output: output(['app']),
   };
 

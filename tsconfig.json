@@ -20,7 +20,8 @@
     "paths": {
       "~/*": ["./*"],
       "server/*": ["./src/server/*"],
-      "app/*": ["./src/app/*"]
+      "app/*": ["./src/app/*"],
+      "static/*": ["./src/static/*"]
     },
     "resolveJsonModule": true,
     "skipLibCheck": true,

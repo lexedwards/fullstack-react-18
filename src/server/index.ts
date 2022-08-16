@@ -1,6 +1,6 @@
 import { server } from './server';
 
-server.listen({ port: 8081 }, function (err, address) {
+server.listen({ port: 8080 }, function (err, address) {
   if (err) {
     server.log.error(err);
     process.exit(1);
