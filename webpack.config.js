@@ -1,21 +1,10 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+const nodeExternals = require('webpack-node-externals');
 const path = require('path');
 
+const isDev = process.env.NODE_ENV !== 'production';
+
 module.exports = function (env, argv) {
-  /** @type {import('webpack').Configuration['mode']} */
-  const mode = env.production ? 'production' : 'development';
-  const isDev = mode !== 'production';
-
-  /** @type { import('webpack').RuleSetRule } */
-  const typescriptLoader = {
-    test: /\.tsx?$/,
-    exclude: /(node_modules)/,
-    use: {
-      loader: 'swc-loader',
-    },
-  };
-
   const resolvePlugins = [new TsconfigPathsPlugin()];
   const resolve = {
     plugins: resolvePlugins,
@@ -24,11 +13,13 @@ module.exports = function (env, argv) {
 
   const output = (folder) => {
     return {
-      filename: isDev ? '[name].js' : '[name].[hash].js',
+      filename: '[name].js',
       path: path.resolve(__dirname, 'dist', ...folder),
       clean: true,
     };
   };
+
+  const mode = isDev ? 'development' : 'production';
 
   /** @type { import('webpack').Configuration} */
   const appConfig = {
@@ -36,11 +27,21 @@ module.exports = function (env, argv) {
     mode,
     entry: './src/app/index.tsx',
     module: {
-      rules: [typescriptLoader],
+      rules: [
+        {
+          test: /\.tsx?$/,
+          exclude: /(node_modules)/,
+          use: [
+            {
+              loader: 'swc-loader',
+            },
+          ],
+        },
+      ],
     },
     resolve,
     target: ['web', 'es2020'],
-    output: output(['app']),
+    output: output(['public']),
   };
 
   /** @type { import('webpack').Configuration} */
@@ -50,11 +51,25 @@ module.exports = function (env, argv) {
     dependencies: ['app'],
     entry: './src/server',
     module: {
-      rules: [typescriptLoader],
+      rules: [
+        {
+          test: /\.tsx?$/,
+          exclude: /(node_modules)/,
+          use: [
+            {
+              loader: 'swc-loader',
+            },
+          ],
+        },
+      ],
     },
     resolve,
     target: 'node',
     output: output(['server']),
+    externalsPresets: {
+      node: true,
+    },
+    externals: [nodeExternals()],
   };
   return [appConfig, serverConfig];
 };

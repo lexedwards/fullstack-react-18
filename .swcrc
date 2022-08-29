@@ -22,6 +22,14 @@
         }
       }
     },
+    "baseUrl": ".",
+    "paths": {
+      "~/*": ["./*"],
+      "app/*": ["./src/app/*"],
+      "server/*": ["./src/server/*"],
+      "static/*": ["./src/static/*"],
+      "test/*": ["./test/*"]
+    },
     "target": "es2020",
     "loose": false,
     "externalHelpers": false

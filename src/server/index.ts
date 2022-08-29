@@ -1,4 +1,6 @@
-import { server } from './server';
+import { buildServer } from './server';
+
+const server = buildServer({ logger: true });
 
 server.listen({ port: 8080 }, function (err, address) {
   if (err) {

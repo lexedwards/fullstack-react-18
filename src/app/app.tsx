@@ -14,7 +14,7 @@ export function App({ head = {}, location = '/' }: AppProps) {
   return (
     <StrictMode>
       <Router location={location}>
-        <HelmetProvider context={head || {}}>
+        <HelmetProvider context={head}>
           <Routes>
             <Route path='/' element={<HomePage />} />
           </Routes>
